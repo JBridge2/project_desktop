@@ -12,7 +12,7 @@ Rectangle {
     id: clockText
 
     anchors.centerIn: parent
-    text: currentTime + "d"
+    text: currentTime
     color: "white"
     font.pixelSize: 14
   }
