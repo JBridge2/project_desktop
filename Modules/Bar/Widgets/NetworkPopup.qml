@@ -10,7 +10,7 @@ PopupWindow {
   anchorSide: "right"
 
   implicitWidth: 300
-  height: main.implicitHeight + 20
+  implicitHeight: main.implicitHeight + 20
 
   Rectangle {
     anchors.fill: parent
@@ -69,7 +69,7 @@ PopupWindow {
 
 
         //---------- Known Networks ----------
-       Text {
+        Text {
           text: "Known Networks"
           font.pixelSize: 16
           color: "white"
@@ -80,41 +80,39 @@ PopupWindow {
           model: NetworkService.wifiEnabled ? NetworkService.knownWifiModel : []
 
           Layout.fillWidth: true
-          Layout.fillHeight: false
           implicitHeight: contentHeight
           
 
-          delegate: Rectangle {
-            width: parent.width
-            height: 35
-            color: "transparent"
-            RowLayout {
-              anchors.fill: parent
-              spacing: 10
-              
-              Rectangle {
-                radius: 15
-                width: 30
-                height: 30
-                color: "blue"
-                Text {
-                  text: "󰖩"
-                  font.pixelSize: 20
-                  color: "white"
-                  anchors.centerIn: parent
-                }
-              }
-              Text {
-                text: model.ssid
-                font.pixelSize: 16
-                color: "white"
-              }
-              Item {
-                Layout.fillWidth: true
-              }
-            }
+          delegate: NetworkDelegate {
+            ssid: model.ssid
           }
         }
+
+        Rectangle {
+          Layout.fillWidth: true
+          Layout.preferredHeight: 1
+          color: "white"
+        }
+
+        //---------- Available Networks ----------
+        Text {
+          text: "Available Networks"
+          font.pixelSize: 16
+          color: "white"
+        }
+
+        ListView {
+          id: availableWifiList
+          model: NetworkService.wifiEnabled ? NetworkService.availableFilteredWifiModel : []
+
+          Layout.fillWidth: true
+          implicitHeight: contentHeight
+
+          delegate: NetworkDelegate {
+            ssid: model.ssid
+          }
+        }
+
         Rectangle {
           Layout.fillWidth: true
           Layout.preferredHeight: 1
@@ -125,6 +123,7 @@ PopupWindow {
           Layout.fillWidth: true
           Layout.fillHeight: true
         }
+        
       }
     }
   }

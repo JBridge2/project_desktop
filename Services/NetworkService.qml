@@ -15,6 +15,8 @@ Singleton {
   property string ssid: "Disconnected" 
 
   property alias knownWifiModel: _knownWifiModel
+  property alias availableWifiModel: _availableWifiModel
+  property alias availableFilteredWifiModel: _availableFilteredWifiModel
 
   //Check if ethernet is connected
   Process {
@@ -78,7 +80,7 @@ Singleton {
     }
   }
 
-  //---------- Get Wifi ----------
+  //---------- Get Known Wifi ----------
   ListModel {
     id: _knownWifiModel
   }
@@ -104,6 +106,65 @@ Singleton {
         if (!exists) {
           knownWifiModel.append({ "ssid": ssidName});
         }
+      }
+    }
+    onExited: {
+      _availableWifiModel.clear();
+      availableWifiProc.running = true;
+    }
+  }
+
+  //---------- Get Available Wifi ----------
+  ListModel {
+    id: _availableWifiModel
+  }
+
+  Process {
+    id: availableWifiProc
+    command: ["sh", "-c", "nmcli -t -f SSID,SIGNAL device wifi list"]
+    stdout: SplitParser {
+      onRead: (line) => {
+        let parts = line.split(":");
+        let ssidName = parts[0];
+        
+        // Check if SSID already exists in model
+        let exists = false;
+        for (let i = 0; i < availableWifiModel.count; i++) {
+          if (availableWifiModel.get(i).ssid === ssidName) {
+            exists = true;
+            break;
+          }
+        }
+        
+        // Only append if not already in model
+        if (!exists && ssidName) {
+          availableWifiModel.append({ "ssid": ssidName});
+        }
+      }
+    }
+    onExited: {
+      filterAvailable();
+    }
+  }
+
+  //---------- Filtered Available Wifi (excludes known) ----------
+  ListModel {
+    id: _availableFilteredWifiModel
+  }
+
+  function filterAvailable() {
+    _availableFilteredWifiModel.clear();
+    for (var i = 0; i < _availableWifiModel.count; i++) {
+      var ssid = _availableWifiModel.get(i).ssid;
+      var isKnown = false;
+      for (var j = 0; j < _knownWifiModel.count; j++) {
+        if (_knownWifiModel.get(j).ssid === ssid) {
+          isKnown = true;
+          break;
+        }
+      }
+      if (!isKnown) {
+        _availableFilteredWifiModel.append({ "ssid": ssid });
       }
     }
   }
