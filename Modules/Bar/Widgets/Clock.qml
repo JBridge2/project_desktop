@@ -3,7 +3,7 @@ import QtQuick
 Rectangle {
   id: clockRoot
   anchors.centerIn: parent
-  height: 24
+  height: 28
   width: clockText.implicitWidth + 20
   radius: height/2
   color: "#222222"
@@ -14,7 +14,7 @@ Rectangle {
     anchors.centerIn: parent
     text: currentTime
     color: "white"
-    font.pixelSize: 14
+    font.pixelSize: 16
   }
 
   property string currentTime: Qt.formatDateTime(new Date(), "HH:mm")

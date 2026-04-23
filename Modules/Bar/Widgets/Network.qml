@@ -7,10 +7,10 @@ Rectangle {
   id: wifiRoot
 
   
-  width: 30
-  height: 24
+  width: 28
+  height: 28
   color: "#4c566a"
-  radius: 10
+  radius: 14
 
   Text {
     id: wifiIcon

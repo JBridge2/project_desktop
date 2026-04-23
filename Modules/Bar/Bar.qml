@@ -12,7 +12,7 @@ PanelWindow {
     right: true
   }
   
-  implicitHeight: 30
+  implicitHeight: 40
   color: "#333333"
 
   RowLayout {
@@ -32,6 +32,8 @@ PanelWindow {
     Network {} 
 
     Battery {}
+
+    Power {}
   }
 
   Clock {}
