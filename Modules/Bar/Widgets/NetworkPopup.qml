@@ -25,18 +25,23 @@ PopupWindow {
       }
       spacing: 10
 
+      //---------- Toggles ----------
       RowLayout {
         id: ethernetToggle
 
         Text {
           text: "Ethernet: "
           font.pixelSize: 16
+          font.bold: true
           color: "white"
         }
         Item {
           Layout.fillWidth: true
         }
-        Toggle {}
+        Toggle {
+          checked: NetworkService.ethernetEnabled
+          onToggleChanged: NetworkService.toggleEthernet()
+        }
       }
 
       Rectangle {
@@ -50,12 +55,16 @@ PopupWindow {
         Text {
           text: "Wifi: "
           font.pixelSize: 16
+          font.bold: true
           color: "white"
         }
         Item {
           Layout.fillWidth: true
         }
-        Toggle {}
+        Toggle {
+          checked: NetworkService.wifiEnabled
+          onToggleChanged: NetworkService.toggleWifi()
+        }
       }
 
       Rectangle {
@@ -79,7 +88,6 @@ PopupWindow {
         Layout.fillWidth: true
         implicitHeight: contentHeight
         
-
         delegate: NetworkDelegate {
           ssid: model.ssid
         }

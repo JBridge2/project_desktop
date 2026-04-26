@@ -5,7 +5,44 @@ import QtQuick
 Rectangle {
   id: root
 
-  width: 40
-  height: 20
-  radius: 10
+  property bool checked: false
+  signal toggleChanged()
+
+  width: 50
+  height: 30
+  radius: height / 2
+  color: checked ? "#4cd137" : "#757577"
+
+  Rectangle {
+    id: ball
+
+    anchors.verticalCenter: parent.verticalCenter
+
+    width: parent.height - 4
+    height: parent.height -4
+    radius: height / 2
+    color: "white"
+    x: checked ? parent.width - width - 2 : 2
+
+    Behavior on x {
+      NumberAnimation {
+        duration: 200
+        easing.type: Easing.InOutQuad
+      }
+    }
+  }
+
+  MouseArea {
+    id: mouseArea
+    anchors.fill: parent
+    cursorShape: Qt.PointingHandCursor
+    onClicked: root.toggleChanged()
+  }
+
+  Behavior on color {
+    ColorAnimation {
+      duration: 200
+      easing.type: Easing.InOutQuad
+    }
+  }
 }

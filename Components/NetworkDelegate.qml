@@ -1,4 +1,4 @@
-pragma ComponentBehavior: Bound
+
 
 import QtQuick
 import QtQuick.Layouts 1.15
@@ -6,9 +6,10 @@ import QtQuick.Layouts 1.15
 Rectangle {
     property string ssid: "Network Name"
     
-    width: parent.width
-    height: 35
-    color: "transparent"
+    width: parent ? parent.width : 280
+    height: 40
+    radius: 10
+    color: mouseArea.containsMouse ? "#555555" : "Transparent"
     
     RowLayout {
     anchors.fill: parent
@@ -18,6 +19,7 @@ Rectangle {
             radius: 15
             width: 30
             height: 30
+            Layout.leftMargin: 5
             color: "blue"
             Text {
                 text: "󰖩"
@@ -35,6 +37,17 @@ Rectangle {
         
         Item {
             Layout.fillWidth: true
+        }
+    }
+
+    MouseArea {
+        id: mouseArea
+
+        anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
+        hoverEnabled: true
+        onClicked: {
+            console.log("Clicked on network: " + ssid)
         }
     }
 }

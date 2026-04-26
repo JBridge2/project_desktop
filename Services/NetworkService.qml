@@ -80,6 +80,34 @@ Singleton {
     }
   }
 
+
+  //---------- Toggle Functions ----------
+  function toggleEthernet() {
+    root.ethernetEnabled = !root.ethernetEnabled
+    toggleEthernetProc.command = ["nmcli", "networking", root.ethernetEnabled ? "on" : "off"]
+    toggleEthernetProc.running = true
+  }
+
+  Process {
+    id: toggleEthernetProc
+    onExited: updateNetwork()
+  }
+
+  function toggleWifi() { 
+    // 1. Update the state
+    root.wifiEnabled = !root.wifiEnabled
+    // 2. Set the command dynamically
+    toggleWifiProc.command = ["nmcli", "radio", "wifi", root.wifiEnabled ? "on" : "off"]
+    // 3. Spawn
+    toggleWifiProc.running = true
+  }
+
+  Process {
+    id: toggleWifiProc
+    onExited: updateNetwork()
+  }
+
+
   //---------- Get Known Wifi ----------
   ListModel {
     id: _knownWifiModel

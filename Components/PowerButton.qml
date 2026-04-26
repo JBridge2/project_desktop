@@ -13,11 +13,13 @@ Rectangle {
     Layout.fillWidth: true
     Layout.preferredHeight: 40
     radius: 10
-    color: "Transparent"
+    color: mouseArea.containsMouse ? "#555555" : "Transparent"
 
     RowLayout {
         anchors.fill: parent
+        anchors.leftMargin: 10
         spacing: 10
+
 
         Image {
             source: Qt.resolvedUrl(icon)
@@ -38,11 +40,11 @@ Rectangle {
     }
 
     MouseArea {
+        id: mouseArea
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
+        onClicked: powerProc.running = true
         hoverEnabled: true
-        onHoveredChanged: root.color = hovered ? "#bbb7b7" : "transparent"
-        onClicked: powerProc.run
     }
 
     Process {

@@ -23,8 +23,8 @@ PopupWindow {
     property var logoutCommand: ["loginctl", "terminate-session"]
 
     anchorSide: "right"
-    implicitWidth: 200
-    implicitHeight: main.implicitHeight + 30
+    implicitWidth: 150
+    implicitHeight: main.implicitHeight
 
     Rectangle {
         anchors.fill: parent
@@ -34,11 +34,8 @@ PopupWindow {
         ColumnLayout {
             id: main
 
-            anchors {
-                fill: parent
-                margins: 15
-            }
-            spacing: 10
+            anchors.fill: parent
+            spacing: 0
 
             PowerButton {
                 name: "Sleep"
@@ -89,7 +86,7 @@ PopupWindow {
             }
 
             PowerButton {
-                name: "Logout"
+                name: "Log out"
                 icon: logoutIcon
                 powerOption: logoutCommand
             }
