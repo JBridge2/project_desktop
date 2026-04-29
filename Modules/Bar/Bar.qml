@@ -29,6 +29,8 @@ PanelWindow {
       Layout.fillWidth: true
     }
 
+    ControlCenterButton {}
+
     Network {} 
 
     Battery {}

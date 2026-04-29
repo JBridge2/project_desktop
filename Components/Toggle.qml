@@ -22,6 +22,8 @@ Rectangle {
     height: parent.height -4
     radius: height / 2
     color: "white"
+    border.width: 1
+    border.color: "#dcdde1"
     x: checked ? parent.width - width - 2 : 2
 
     Behavior on x {

@@ -1,38 +1,17 @@
+import QtQuick
 import Quickshell
 import Quickshell.Io
-import QtQuick
+import "../../../Components/"
 import "../../../Services"
 
-Rectangle {
-  id: wifiRoot
-
-  
-  width: 28
-  height: 28
-  color: "#4c566a"
-  radius: 14
-
-  Text {
-    id: wifiIcon
-
-    anchors.centerIn: parent
-    text: {
-      if (NetworkService.ethernetConnected === true) return "󰈀"
-      else if (NetworkService.wifiConnected === true) {
-        if (NetworkService.wifiStrength >= 66) return "󰖩"
-        else if (NetworkService.wifiStrength < 66 && NetworkService.wifiStrength > 33) return "󰤥"
-        else if (NetworkService.wifiStrength <= 33) return "󰤢"
-      }
-      else return "Disconnected 󰖪"
-    }
-    color: "white"
-    font.pixelSize: 18
-  }
+WifiIcon {
+  size: 40
+  radius: 5
+  color: networkPopup.visible ? "#4d4d4d" : "transparent"
 
   MouseArea {
     anchors.fill: parent
     cursorShape: Qt.PointingHandCursor
-
     onClicked: networkPopup.visible = !networkPopup.visible
   }
 
