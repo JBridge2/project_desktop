@@ -4,10 +4,11 @@ import Quickshell
 Rectangle {
     id: root
 
-    property int value: 10
-    property int from: 0
-    property int to: 100
-    property int stepSize: 1
+    property real value: 10
+    property int min: 0
+    property int max: 100
+
+    signal moved(real val)
 
     width: 300
     height: 26
@@ -24,7 +25,7 @@ Rectangle {
         Rectangle {
             id: fill
             anchors.verticalCenter: parent.verticalCenter
-            width: (value / to) * (track.width - handle.width) + handle.width
+            width: (value / max) * (track.width - handle.width) + handle.width
             height: parent.height
             radius: height / 2
             color: "white"
@@ -46,8 +47,8 @@ Rectangle {
             radius: height / 2
             color: mouseArea.pressed ? "#b0b0b0" : "white"
             border.width: 1
-            border.color: "#dcdde1"
-            x: value * (parent.width - width) / to
+            border.color: "#aaaaaa"
+            x: value * (parent.width - width) / max
 
             Behavior on x {
                 NumberAnimation {
@@ -66,9 +67,8 @@ Rectangle {
         onPositionChanged: if (mouse.buttons & Qt.LeftButton) updateValue(mouse.x)
 
         function updateValue(mouseX) {
-            var newValue = Math.round((mouseX - handle.width / 2) / (parent.width - handle.width) * (to - from) + from)
-            value = Math.max(from, Math.min(to, newValue))
-            console.log(handle.x)
+            var newValue = (Math.round((mouseX - handle.width / 2) / (parent.width - handle.width) * (max - min) + min)) / 100
+            moved(newValue)
         }
     }
 }

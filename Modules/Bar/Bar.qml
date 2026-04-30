@@ -21,7 +21,7 @@ PanelWindow {
       leftMargin: 10
       rightMargin: 10
     }
-    spacing: 10
+    spacing: 0
 
     Workspaces {}
 

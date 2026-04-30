@@ -3,19 +3,19 @@ import Quickshell
 
 Rectangle {
     id: powerRoot
-    width: 28
-    height: 28
-    color: "#4c566a"
-    radius: 14
+    width: 40
+    height: 40
+    color: powerPopup.visible ? "#4d4d4d" : "Transparent"
+    radius: 5
 
     Image {
         anchors.centerIn: parent
         source: Qt.resolvedUrl("../../../Assets/Icons/power.svg")
         fillMode: Image.PreserveAspectFit
         smooth: true
-        width: 18
-        height: 18
-        sourceSize: Qt.size(18, 18)
+        width: 26
+        height: 26
+        sourceSize: Qt.size(26, 26)
     }
 
     MouseArea {

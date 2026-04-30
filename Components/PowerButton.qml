@@ -20,7 +20,6 @@ Rectangle {
         anchors.leftMargin: 10
         spacing: 10
 
-
         Image {
             source: Qt.resolvedUrl(icon)
             width: 20

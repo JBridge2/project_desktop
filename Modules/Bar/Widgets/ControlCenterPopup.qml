@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts 1.15
-import QtQuick.Controls
 import Quickshell
+import Quickshell.Services.Pipewire
 import "../../../Components/"
 import "../../../Services/"
 
@@ -92,7 +92,10 @@ PopupWindow {
                         font.bold: true
                     }
                     Slider {
-
+                        value: AudioService.defaultSink && !AudioService.defaultSink.audio.muted? (AudioService.defaultSink.audio.volume * 100) : 0
+                        onMoved: (val) => {
+                            AudioService.setVolume(AudioService.defaultSink, val);
+                        }
                     }
                 }
             }

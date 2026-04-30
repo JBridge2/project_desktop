@@ -11,7 +11,7 @@ Rectangle {
     width: size
     height: size
     radius: size / 2
-    color: NetworkService.wifiConnected ? "#1c55c6" : "#6d6d6d"
+    color: NetworkService.wifiConnected ? "#0080ff" : "#6d6d6d"
 
     Image {
         anchors.centerIn: parent
