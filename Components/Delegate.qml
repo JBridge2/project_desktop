@@ -4,8 +4,9 @@ import QtQuick
 import QtQuick.Layouts 1.15
 
 Rectangle {
-    property string ssid: "Network Name"
-    
+    property string name: ""
+    default property alias icon: iconPlaceholder.data
+
     width: parent ? parent.width : 280
     height: 40
     radius: 10
@@ -15,22 +16,19 @@ Rectangle {
     anchors.fill: parent
     spacing: 10
 
-        Rectangle {
-            radius: 15
-            width: 30
-            height: 30
-            Layout.leftMargin: 5
-            color: "blue"
-            Text {
-                text: "󰖩"
-                font.pixelSize: 20
-                color: "white"
-                anchors.centerIn: parent
+        Item {
+            id: iconPlaceholder
+            Layout.preferredWidth: 30
+            Layout.preferredHeight: 30
+
+            Rectangle {
+                visible: iconPlaceholder.children.length <= 1
+                width: 30; height: 30; radius: 15; color: "#6d6d6d"
             }
         }
         
         Text {
-            text: ssid
+            text: name
             font.pixelSize: 16
             color: "white"
         }

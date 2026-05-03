@@ -16,6 +16,7 @@ Singleton {
 
   property alias knownWifiModel: _knownWifiModel
   property alias availableWifiModel: _availableWifiModel
+  property alias knownFilteredWifiModel: _knownFilteredWifiModel
   property alias availableFilteredWifiModel: _availableFilteredWifiModel
 
   //Check if ethernet is connected
@@ -132,12 +133,11 @@ Singleton {
         
         // Only append if not already in model
         if (!exists) {
-          knownWifiModel.append({ "ssid": ssidName});
+          knownWifiModel.append({ "ssid": ssidName, });
         }
       }
     }
     onExited: {
-      _availableWifiModel.clear();
       availableWifiProc.running = true;
     }
   }
@@ -154,6 +154,7 @@ Singleton {
       onRead: (line) => {
         let parts = line.split(":");
         let ssidName = parts[0];
+        let strength = parts[1];
         
         // Check if SSID already exists in model
         let exists = false;
@@ -166,12 +167,39 @@ Singleton {
         
         // Only append if not already in model
         if (!exists && ssidName) {
-          availableWifiModel.append({ "ssid": ssidName});
+          availableWifiModel.append({ "ssid": ssidName, "strength": strength });
         }
       }
     }
     onExited: {
+      filterKnown();
       filterAvailable();
+    }
+  }
+  //---------- Filtered Known Wifi ----------
+  ListModel {
+    id: _knownFilteredWifiModel
+  }
+
+  function filterKnown() {
+    for (var i = 0; i < _availableWifiModel.count; i++) {
+      var network = _availableWifiModel.get(i);
+      var isKnown = false;
+      var onList = false;
+      for (var j = 0; j < _knownWifiModel.count; j++) {
+        if (_knownWifiModel.get(j).ssid === network.ssid) {
+          isKnown = true;
+          for (var l = 0; l <_knownFilteredWifiModel.count; l++) {
+            if (_knownFilteredWifiModel.get(l).ssid === network.ssid) {
+              onList = true
+              break;
+            }
+          }
+        }
+      }
+      if (isKnown && !onList) {
+        _knownFilteredWifiModel.append({ "ssid": network.ssid, "strength": network.strength });
+      }
     }
   }
 
@@ -181,20 +209,33 @@ Singleton {
   }
 
   function filterAvailable() {
-    _availableFilteredWifiModel.clear();
     for (var i = 0; i < _availableWifiModel.count; i++) {
-      var ssid = _availableWifiModel.get(i).ssid;
+      var network = _availableWifiModel.get(i);
       var isKnown = false;
+      var onList = false;
       for (var j = 0; j < _knownWifiModel.count; j++) {
-        if (_knownWifiModel.get(j).ssid === ssid) {
+        if (_knownWifiModel.get(j).ssid === network.ssid) {
           isKnown = true;
           break;
         }
+        for (var l = 0; l < _availableFilteredWifiModel.count; l++) {
+          if (_availableFilteredWifiModel.get(l).ssid === network.ssid) {
+            onList = true;
+            break;
+          }
+        }
       }
-      if (!isKnown) {
-        _availableFilteredWifiModel.append({ "ssid": ssid });
+      if (!isKnown && !onList) {
+        _availableFilteredWifiModel.append({ "ssid": network.ssid, "strength": network.strength });
       }
     }
+  }
+
+  function clearWifi() {
+    _knownWifiModel.clear();
+    _availableWifiModel.clear();
+    _knownFilteredWifiModel.clear();
+    _availableFilteredWifiModel.clear();
   }
 
   //Update every 5 seconds
@@ -205,6 +246,16 @@ Singleton {
     triggeredOnStart: true
     onTriggered: {
       updateNetwork();
+    }
+  }
+
+  //Update every 5 seconds, if popup is open
+  Timer {
+    interval: 5000
+    running: PopupState.isOpen("network")
+    repeat: true
+    triggeredOnStart: true
+    onTriggered: {
       knownWifiProc.running = true
     }
   }

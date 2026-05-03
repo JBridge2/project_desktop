@@ -8,8 +8,8 @@ Singleton {
     id: root
 
     // ---------- Config ----------
-    property int minVolume: 0
-    property int maxVolume: 1
+    property real minVolume: 0
+    property real maxVolume: 1
 
     // ---------- Default Nodes ----------
     readonly property PwNode defaultSink: Pipewire.defaultAudioSink
@@ -17,12 +17,10 @@ Singleton {
 
 
     // ---------- List Nodes ----------
-    readonly property var devices: Pipewire.nodes.values
-    .filter(n => {
-        const type = String(PwNodeType.toString?.(n.type) || PwNodeType[n.type]);
-        return n.audio && (type === "AudioSink" || type === "AudioSource");
-    })
-    .sort((a, b) => b.type - a.type)
+    property ScriptModel sinksModel: ScriptModel {
+        values: Pipewire.nodes.values.filter(n => n.isSink)
+    }
+    
 
     // ---------- Set Default Nodes ----------
     function setDefaultSink(sink) {

@@ -1,9 +1,8 @@
 import QtQuick
 import QtQuick.Layouts 1.15
 import Quickshell
-import Quickshell.Services.Pipewire
-import "../../../Components/"
-import "../../../Services/"
+import "../../Components/"
+import "../../Services/"
 
 PopupWindow {
     id: root
@@ -36,6 +35,7 @@ PopupWindow {
                 Layout.columnSpan: 1
                 line1: "Wi-Fi"
                 line2: NetworkService.wifiConnected ? NetworkService.ssid : "Disconnected"
+                popup: "network"
                 WifiIcon {}
             }
 
@@ -80,6 +80,8 @@ PopupWindow {
             WidgetBox {
                 id: volumeBox
                 Layout.columnSpan: 2
+                popup: "audio"
+
                 ColumnLayout {
                     anchors.fill: parent
                     anchors.margins: 10
@@ -98,6 +100,7 @@ PopupWindow {
                         }
                     }
                 }
+                
             }
 
             ImageBox {
@@ -111,12 +114,20 @@ PopupWindow {
 
     //---------- Components ----------
     component WidgetBox: Rectangle {
+        property string popup: ""
+
         Layout.fillWidth: true
         height: 70
         radius: 10
         color: "#3c3c3c"
         border.width: 1
         border.color: "#4d4d4d"
+
+        MouseArea {
+            id: mouseArea
+            anchors.fill: parent
+            onClicked: PopupState.toggle(popup)
+        }
     }
 
     component ImageBox: WidgetBox {

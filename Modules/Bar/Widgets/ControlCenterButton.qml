@@ -1,5 +1,6 @@
 import QtQuick
 import Quickshell
+import "../../../Services/"
 
 Rectangle {
     id: root
@@ -8,7 +9,7 @@ Rectangle {
     width: size
     height: size
     radius: 5
-    color: controlCenterPopup.visible ? "#4d4d4d" : "Transparent"
+    color: PopupState.isOpen("controlCenter") ? "#4d4d4d" : "Transparent"
 
     Image {
         anchors.centerIn: parent
@@ -22,11 +23,6 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
-        onClicked: controlCenterPopup.visible = !controlCenterPopup.visible
-    }
-
-    ControlCenterPopup {
-        id: controlCenterPopup
-        visible: false
+        onClicked: PopupState.toggle("controlCenter")
     }
 }

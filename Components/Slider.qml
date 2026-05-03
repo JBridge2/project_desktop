@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Layouts
 import Quickshell
 
 Rectangle {
@@ -10,7 +11,7 @@ Rectangle {
 
     signal moved(real val)
 
-    width: 300
+    Layout.fillWidth: true
     height: 26
     radius: height / 2
     color: "#6d6d6d"

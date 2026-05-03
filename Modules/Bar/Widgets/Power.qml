@@ -1,11 +1,12 @@
 import QtQuick
 import Quickshell
+import "../../../Services/"
 
 Rectangle {
     id: powerRoot
     width: 40
     height: 40
-    color: powerPopup.visible ? "#4d4d4d" : "Transparent"
+    color: PopupState.isOpen("power") ? "#4d4d4d" : "Transparent"
     radius: 5
 
     Image {
@@ -21,11 +22,6 @@ Rectangle {
     MouseArea {
         anchors.fill: parent
         cursorShape: Qt.PointingHandCursor
-        onClicked: powerPopup.visible = !powerPopup.visible
-    }
-
-    PowerPopup {
-        id: powerPopup
-        visible: false
+        onClicked: PopupState.toggle("power")
     }
 }

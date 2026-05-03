@@ -6,6 +6,7 @@ Rectangle {
     id: wifiRoot
 
     property int size: 40
+    property int imageSize: size * 0.8
     property int signalStrength: NetworkService.wifiStrength
 
     width: size
@@ -18,9 +19,9 @@ Rectangle {
         source: Qt.resolvedUrl("../Assets/Icons/Wifi/wifiTopBar.svg")
         fillMode: Image.PreserveAspectFit
         smooth: true
-        width: size * 0.7
-        height: size * 0.7
-        sourceSize: Qt.size(size * 0.7, size * 0.7)
+        width: imageSize
+        height: imageSize
+        sourceSize: Qt.size(imageSize, imageSize)
         opacity: signalStrength >= 75 ? 1 : 0.5
     }
 
@@ -29,9 +30,9 @@ Rectangle {
         source: Qt.resolvedUrl("../Assets/Icons/Wifi/wifiMiddleBar.svg")
         fillMode: Image.PreserveAspectFit
         smooth: true
-        width: size * 0.7
-        height: size * 0.7
-        sourceSize: Qt.size(size * 0.7, size * 0.7)
+        width: imageSize
+        height: imageSize
+        sourceSize: Qt.size(imageSize, imageSize)
         opacity: signalStrength >= 50 ? 1 : 0.5
     }
 
@@ -40,16 +41,16 @@ Rectangle {
         source: Qt.resolvedUrl("../Assets/Icons/Wifi/wifiBottomBar.svg")
         fillMode: Image.PreserveAspectFit
         smooth: true
-        width: size * 0.7
-        height: size * 0.7
-        sourceSize: Qt.size(size * 0.7, size * 0.7)
+        width: imageSize
+        height: imageSize
+        sourceSize: Qt.size(imageSize, imageSize)
         opacity: signalStrength >= 25 ? 1 : 0.5
     }
 
     Rectangle {
         id: disconnectedLine
         width: 2
-        height: size * 0.7
+        height: imageSize
         radius: 1
         color: "white"
         anchors.centerIn: parent

@@ -1,8 +1,25 @@
 import Quickshell
-import "./Modules/Bar"
+import "./Modules/Bar/"
+import "./Modules/Popups/"
+import "./Services/"
 
 ShellRoot {
   id: root
 
   Bar {}
+
+
+  //---------- Popup's ----------
+  NetworkPopup {
+    visible: PopupState.isOpen("network")
+  }
+  PowerPopup {
+    visible: PopupState.isOpen("power")
+  }
+  ControlCenterPopup {
+    visible: PopupState.isOpen("controlCenter")
+  }
+  AudioPopup {
+    visible: PopupState.isOpen("audio")
+  }
 } 

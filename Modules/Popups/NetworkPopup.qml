@@ -1,8 +1,8 @@
 import Quickshell
 import QtQuick
 import QtQuick.Layouts 1.15
-import "../../../Components/"
-import "../../../Services/"
+import "../../Components/"
+import "../../Services/"
 
 PopupWindow {
   id: root
@@ -15,14 +15,12 @@ PopupWindow {
   Rectangle {
     anchors.fill: parent
     radius: 10
-    color: "#333333"
+    color: "#3c3c3c"
 
     ColumnLayout {
       id: main
-      anchors {
-        fill: parent
-        margins: 10
-      }
+      anchors.fill: parent
+      anchors.margins: 10
       spacing: 10
 
       //---------- Toggles ----------
@@ -83,13 +81,17 @@ PopupWindow {
 
       ListView {
         id: knownWifiList
-        model: NetworkService.wifiEnabled ? NetworkService.knownWifiModel : []
+        model: NetworkService.wifiEnabled ? NetworkService.knownFilteredWifiModel : []
 
         Layout.fillWidth: true
         implicitHeight: contentHeight
         
-        delegate: NetworkDelegate {
-          ssid: model.ssid
+        delegate: Delegate {
+          name: model.ssid
+          WifiIcon {
+            size: 30
+            signalStrength: model.strength
+          }
         }
       }
 
@@ -113,8 +115,12 @@ PopupWindow {
         Layout.fillWidth: true
         implicitHeight: contentHeight
 
-        delegate: NetworkDelegate {
-          ssid: model.ssid
+        delegate: Delegate {
+          name: model.ssid
+          WifiIcon {
+            size: 30
+            signalStrength: model.strength
+          }
         }
       }
 
