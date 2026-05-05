@@ -19,6 +19,9 @@ ShellRoot {
   ControlCenterPopup {
     visible: PopupState.isOpen("controlCenter")
   }
+  BluetoothPopup {
+    visible: PopupState.isOpen("bluetooth")
+  }
   AudioPopup {
     visible: PopupState.isOpen("audio")
   }

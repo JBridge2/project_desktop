@@ -1,11 +1,14 @@
-
+pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Layouts 1.15
 
 Rectangle {
+    id: root
     property string name: ""
     default property alias icon: iconPlaceholder.data
+    
+    signal clicked()
 
     width: parent ? parent.width : 280
     height: 40
@@ -14,6 +17,7 @@ Rectangle {
     
     RowLayout {
     anchors.fill: parent
+    anchors.margins: 5
     spacing: 10
 
         Item {
@@ -45,7 +49,7 @@ Rectangle {
         cursorShape: Qt.PointingHandCursor
         hoverEnabled: true
         onClicked: {
-            console.log("Clicked on network: " + ssid)
+            root.clicked()
         }
     }
 }

@@ -49,6 +49,7 @@ PopupWindow {
                 Layout.columnSpan: 1
                 line1: "Bluetooth"
                 line2: "Connected: 0"
+                popup: "bluetooth"
             }
             
             ImageBox {

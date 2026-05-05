@@ -1,3 +1,4 @@
 singleton PopupState PopupState.qml
 singleton NetworkService NetworkService.qml
+singleton BluetoothService BluetoothService.qml
 singleton AudioService AudioService.qml

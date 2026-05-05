@@ -8,8 +8,8 @@ PopupWindow {
     id: root
 
     anchorSide: "right"
-    width: 360
-    height: main.implicitHeight + 30
+    implicitWidth: 360
+    implicitHeight: main.implicitHeight + 30
 
     Rectangle {
         anchors.fill: parent
