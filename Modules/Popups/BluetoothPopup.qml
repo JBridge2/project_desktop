@@ -7,6 +7,7 @@ import "../../Services/"
 PopupWindow2 {
     id: root
     
+    anchorSide: "right"
     onVisibleChanged: BluetoothService.bluetoothScan(root.visible)
     
     RowLayout {
@@ -22,10 +23,9 @@ PopupWindow2 {
             Layout.fillWidth: true
         }
         Toggle {
-            checked: BluetoothService.adapter.enabled
+            checked: BluetoothService?.adapter.enabled
             onToggleChanged: {
                 BluetoothService.toggleBluetooth()
-                console.log(BluetoothService.adapter.enabled)
             }
         }
     }
@@ -51,6 +51,8 @@ PopupWindow2 {
 
         delegate: Delegate {
             name: modelData.name
+            image: "bluetooth.svg"
+            connected: modelData.connected
             onClicked: modelData.connected ? modelData.disconnect() : modelData.connect()
         }
     }
@@ -76,6 +78,7 @@ PopupWindow2 {
 
         delegate: Delegate {
             name: modelData.name
+            image: "bluetooth.svg"
             onClicked: {
                 modelData.pair()
             }

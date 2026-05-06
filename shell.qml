@@ -13,6 +13,9 @@ ShellRoot {
   NetworkPopup {
     visible: PopupState.isOpen("network")
   }
+  BatteryPopup {
+    visible: PopupState.isOpen("battery")
+  }
   PowerPopup {
     visible: PopupState.isOpen("power")
   }

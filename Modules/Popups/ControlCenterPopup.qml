@@ -41,15 +41,18 @@ PopupWindow {
 
             ImageBox {
                 Layout.columnSpan: 1
+                image: connected ? "vpn_connected.svg" : "vpn_disconnected.svg"
                 line1: "VPN"
                 line2: "Disconnected"
             }
 
             ImageBox {
                 Layout.columnSpan: 1
-                line1: "Bluetooth"
-                line2: "Connected: 0"
                 popup: "bluetooth"
+                image: "bluetooth.svg"
+                connected: BluetoothService?.adapter?.enabled
+                line1: "Bluetooth"
+                line2: BluetoothService?.adapter?.enabled ? "On" : "Off"
             }
             
             ImageBox {
@@ -132,7 +135,9 @@ PopupWindow {
     }
 
     component ImageBox: WidgetBox {
+        id: widgetBox
         property url image: ""
+        property bool connected: false
         property string line1: ""
         property string line2: ""
 
@@ -150,9 +155,11 @@ PopupWindow {
                 Layout.preferredWidth: 40
                 Layout.preferredHeight: 40
 
-                Rectangle {
+                IconBox {
                     visible: iconPlaceholder.children.length <= 1
-                    width: 40; height: 40; radius: 20; color: "#6d6d6d"
+                    size: 40
+                    imageUrl: widgetBox.image
+                    connected: widgetBox.connected
                 }
             }
 

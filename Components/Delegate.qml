@@ -6,8 +6,11 @@ import QtQuick.Layouts 1.15
 Rectangle {
     id: root
     property string name: ""
+    property url image: ""
+    property int imageSize: 22
+    property bool connected: false
+
     default property alias icon: iconPlaceholder.data
-    
     signal clicked()
 
     width: parent ? parent.width : 280
@@ -25,9 +28,11 @@ Rectangle {
             Layout.preferredWidth: 30
             Layout.preferredHeight: 30
 
-            Rectangle {
+            IconBox {
                 visible: iconPlaceholder.children.length <= 1
-                width: 30; height: 30; radius: 15; color: "#6d6d6d"
+                size: 30
+                imageUrl: root.image
+                connected: root.connected
             }
         }
         
@@ -46,7 +51,7 @@ Rectangle {
         id: mouseArea
 
         anchors.fill: parent
-        cursorShape: Qt.PointingHandCursor
+        cursorShape: pressed ? Qt.ClosedHandCursor : Qt.PointingHandCursor
         hoverEnabled: true
         onClicked: {
             root.clicked()
