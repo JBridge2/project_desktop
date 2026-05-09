@@ -1,6 +1,6 @@
 import QtQuick
 import Quickshell
-import "../../../Services/"
+import Core
 
 Rectangle {
     id: powerRoot

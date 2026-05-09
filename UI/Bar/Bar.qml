@@ -1,7 +1,9 @@
-import Quickshell
 import QtQuick
 import QtQuick.Layouts 1.15
+import Quickshell
 import "./Widgets"
+
+import Core
 
 PanelWindow {
   id: root

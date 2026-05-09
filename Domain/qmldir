@@ -1,0 +1,3 @@
+module Domain
+
+singleton AppRegistry 1.0 Launcher/AppRegistry.qml

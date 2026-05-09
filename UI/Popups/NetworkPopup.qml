@@ -1,8 +1,9 @@
 import Quickshell
 import QtQuick
 import QtQuick.Layouts 1.15
-import "../../Components/"
-import "../../Services/"
+import Components
+import Core
+import Services
 
 PopupWindow {
   id: root

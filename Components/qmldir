@@ -1,0 +1,12 @@
+module Components
+
+Delegate 1.0 Base/Delegate.qml
+IconBox 1.0 Base/IconBox.qml
+PopupWindow 1.0 Base/PopupWindow.qml
+PopupWindow2 1.0 Base/PopupWindow2.qml
+
+PowerButton 1.0 Controls/PowerButton.qml
+Slider 1.0 Controls/Slider.qml
+Toggle 1.0 Controls/Toggle.qml
+
+WifiIcon 1.0 WifiIcon.qml

@@ -1,7 +1,7 @@
 import QtQuick
 import Quickshell
 import Quickshell.Services.UPower
-import "../../../Services/"
+import Core
 
 Rectangle {
   	id: batteryRoot

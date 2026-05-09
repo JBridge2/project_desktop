@@ -1,0 +1,3 @@
+module Core
+
+singleton PopupState 1.0 PopupState.qml

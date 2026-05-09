@@ -16,7 +16,7 @@ Rectangle {
 
     Image {
         anchors.centerIn: parent
-        source: Qt.resolvedUrl("../Assets/Icons/" + imageUrl)
+        source: !(imageUrl == "") ? Qt.resolvedUrl("../../Assets/Icons/" + imageUrl) : ""
         fillMode: Image.PreserveAspectFit
         smooth: true
         width: imageSize

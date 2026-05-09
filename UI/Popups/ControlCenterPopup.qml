@@ -1,8 +1,9 @@
 import QtQuick
 import QtQuick.Layouts 1.15
 import Quickshell
-import "../../Components/"
-import "../../Services/"
+import Components
+import Core
+import Services
 
 PopupWindow {
     id: root
@@ -50,7 +51,7 @@ PopupWindow {
                 Layout.columnSpan: 1
                 popup: "bluetooth"
                 image: "bluetooth.svg"
-                connected: BluetoothService?.adapter?.enabled
+                connected: BluetoothService?.adapter?.enabled ?? false
                 line1: "Bluetooth"
                 line2: BluetoothService?.adapter?.enabled ? "On" : "Off"
             }

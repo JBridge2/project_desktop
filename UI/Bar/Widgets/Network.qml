@@ -1,8 +1,8 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
-import "../../../Components/"
-import "../../../Services/"
+import Components
+import Core
 
 WifiIcon {
     size: 40

@@ -2,7 +2,8 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.UPower
-import "../../Components/"
+import Components
+import Core
 
 PopupWindow2 {
     id: root

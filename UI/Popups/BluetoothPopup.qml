@@ -1,8 +1,9 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-import "../../Components/"
-import "../../Services/"
+import Components
+import Core
+import Services
 
 PopupWindow2 {
     id: root
@@ -23,7 +24,7 @@ PopupWindow2 {
             Layout.fillWidth: true
         }
         Toggle {
-            checked: BluetoothService?.adapter.enabled
+            checked: BluetoothService?.adapter?.enabled ?? false
             onToggleChanged: {
                 BluetoothService.toggleBluetooth()
             }

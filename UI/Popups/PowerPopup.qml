@@ -2,7 +2,8 @@ import QtQuick
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import Quickshell
-import "../../Components/"
+import Components
+import Core
 
 PopupWindow {
     id: root
