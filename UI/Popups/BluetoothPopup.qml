@@ -5,7 +5,7 @@ import Components
 import Core
 import Services
 
-PopupWindow2 {
+PopupWindow {
     id: root
     
     anchorSide: "right"
@@ -25,18 +25,13 @@ PopupWindow2 {
         }
         Toggle {
             checked: BluetoothService?.adapter?.enabled ?? false
-            onToggleChanged: {
-                BluetoothService.toggleBluetooth()
-            }
+            onToggleChanged: BluetoothService.toggleBluetooth()
         }
     }
 
-    Rectangle {
-        Layout.fillWidth: true
-        height: 1
-        color: "#7d7d7d"
-    }
+    Separator {}
 
+    // -------------------- Paired Devices ------------------------------
     Text {
         text: "Paired Devices"
         color: "#d2d2d2"
@@ -58,12 +53,9 @@ PopupWindow2 {
         }
     }
 
-    Rectangle {
-        Layout.fillWidth: true
-        height: 1
-        color: "#7d7d7d"
-    }
+    Separator {}
 
+    // -------------------- Other Devices ------------------------------
     Text {
         text: "Other Devices"
         color: "#d2d2d2"
@@ -80,9 +72,7 @@ PopupWindow2 {
         delegate: Delegate {
             name: modelData.name
             image: "bluetooth.svg"
-            onClicked: {
-                modelData.pair()
-            }
+            onClicked: modelData.pair()
         }
     }
 }

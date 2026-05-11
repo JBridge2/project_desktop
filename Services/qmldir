@@ -3,3 +3,4 @@ module Services
 singleton AudioService AudioService.qml
 singleton BluetoothService BluetoothService.qml
 singleton NetworkService NetworkService.qml
+singleton NotificationService NotificationService.qml

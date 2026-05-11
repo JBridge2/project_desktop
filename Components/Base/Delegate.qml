@@ -31,7 +31,7 @@ Rectangle {
             IconBox {
                 visible: iconPlaceholder.children.length <= 1
                 size: 30
-                imageUrl: root.image
+                imageUrl: (root.image != "") ? Qt.resolvedUrl("../../Assets/Icons/" + root.image ) : ""
                 connected: root.connected
             }
         }

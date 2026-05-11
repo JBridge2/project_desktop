@@ -24,73 +24,45 @@ PopupWindow {
     property var logoutCommand: ["loginctl", "terminate-session"]
 
     anchorSide: "right"
-    implicitWidth: 150
-    implicitHeight: main.implicitHeight
+    width: 150
+    innerMargins: 0
+    columnSpacing: 0
 
-    Rectangle {
-        anchors.fill: parent
-        radius: 10
-        color: "#3c3c3c"
+    PowerButton {
+        name: "Sleep"
+        icon: sleepIcon
+        powerOption: sleepCommand
+    }
 
-        ColumnLayout {
-            id: main
+    Separator {}
 
-            anchors.fill: parent
-            spacing: 0
+    PowerButton {
+        name: "Restart"
+        icon: restartIcon
+        powerOption: restartCommand
+    }
 
-            PowerButton {
-                name: "Sleep"
-                icon: sleepIcon
-                powerOption: sleepCommand
-            }
+    Separator {}
 
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.preferredHeight: 1
-                color: "gray"
-            }
+    PowerButton {
+        name: "Shutdown"
+        icon: shutdownIcon
+        powerOption: shutdownCommand
+    }
 
-            PowerButton {
-                name: "Restart"
-                icon: restartIcon
-                powerOption: restartCommand
-            }
+    Separator {}
 
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.preferredHeight: 1
-                color: "gray"
-            }
+    PowerButton {
+        name: "Lock"
+        icon: lockIcon
+        powerOption: lockCommand
+    }
 
-            PowerButton {
-                name: "Shutdown"
-                icon: shutdownIcon
-                powerOption: shutdownCommand
-            }
+    Separator {}
 
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.preferredHeight: 1
-                color: "gray"
-            }
-
-            PowerButton {
-                name: "Lock"
-                icon: lockIcon
-                powerOption: lockCommand
-            }
-
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.preferredHeight: 1
-                color: "gray"
-            }
-
-            PowerButton {
-                name: "Log out"
-                icon: logoutIcon
-                powerOption: logoutCommand
-            }
-        }
+    PowerButton {
+        name: "Log out"
+        icon: logoutIcon
+        powerOption: logoutCommand
     }
 }

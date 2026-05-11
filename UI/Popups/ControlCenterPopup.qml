@@ -5,7 +5,7 @@ import Components
 import Core
 import Services
 
-PopupWindow {
+PopupWindow2 {
     id: root
 
     anchorSide: "right"
@@ -15,7 +15,9 @@ PopupWindow {
     Rectangle {
         anchors.fill: parent
         radius: 10
-        color: "#333333"
+        color: "#2c2c2c"
+        border.width: 1
+        border.color: "#4d4d4d"
 
         GridLayout {
             id: main
@@ -27,9 +29,9 @@ PopupWindow {
 
             ImageBox {
                 Layout.columnSpan: 2
-                height: 140
-                line1: "Welcome"
-                line2: "Joshua"
+                line1: "Notifications"
+                line2: NotificationService.notificationsModel.values.length + " New notifications"
+                popup: "notification"
             }
 
             ImageBox {
@@ -117,7 +119,7 @@ PopupWindow {
     }
 
 
-    //---------- Components ----------
+    // -------------------- Components ------------------------------
     component WidgetBox: Rectangle {
         property string popup: ""
 
@@ -159,7 +161,7 @@ PopupWindow {
                 IconBox {
                     visible: iconPlaceholder.children.length <= 1
                     size: 40
-                    imageUrl: widgetBox.image
+                    imageUrl: (widgetBox.image != "") ? Qt.resolvedUrl("../../Assets/Icons/" + widgetBox.image ) : ""
                     connected: widgetBox.connected
                 }
             }

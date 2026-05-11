@@ -5,7 +5,7 @@ import Quickshell.Services.UPower
 import Components
 import Core
 
-PopupWindow2 {
+PopupWindow {
     id: root
 
     property real batPercentage: UPower.displayDevice.percentage

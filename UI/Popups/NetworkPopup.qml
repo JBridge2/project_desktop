@@ -6,81 +6,58 @@ import Core
 import Services
 
 PopupWindow {
-  id: root
+  	id: root
 
-  anchorSide: "right"
+  	anchorSide: "right"
 
-  implicitWidth: 300
-  implicitHeight: main.implicitHeight + 20
-
-  Rectangle {
-    anchors.fill: parent
-    radius: 10
-    color: "#3c3c3c"
-
-    ColumnLayout {
-      id: main
-      anchors.fill: parent
-      anchors.margins: 10
-      spacing: 10
-
-      //---------- Toggles ----------
-      RowLayout {
+    // -------------------- Toggles ------------------------------
+    RowLayout {
         id: ethernetToggle
 
         Text {
-          text: "Ethernet: "
-          font.pixelSize: 16
-          font.bold: true
-          color: "white"
+          	text: "Ethernet: "
+          	font.pixelSize: 16
+          	font.bold: true
+          	color: "white"
         }
         Item {
-          Layout.fillWidth: true
+          	Layout.fillWidth: true
         }
         Toggle {
-          checked: NetworkService.ethernetEnabled
-          onToggleChanged: NetworkService.toggleEthernet()
+          	checked: NetworkService.ethernetEnabled
+          	onToggleChanged: NetworkService.toggleEthernet()
         }
-      }
+    }
 
-      Rectangle {
-        Layout.fillWidth: true
-        Layout.preferredHeight: 1
-        color: "white"
-      }
+    Separator {}
 
-      RowLayout {
+    RowLayout {
         id: wifiToggle
         Text {
-          text: "Wifi: "
-          font.pixelSize: 16
-          font.bold: true
-          color: "white"
+          	text: "Wifi: "
+          	font.pixelSize: 16
+          	font.bold: true
+          	color: "white"
         }
         Item {
-          Layout.fillWidth: true
+          	Layout.fillWidth: true
         }
         Toggle {
-          checked: NetworkService.wifiEnabled
-          onToggleChanged: NetworkService.toggleWifi()
+          	checked: NetworkService.wifiEnabled
+          	onToggleChanged: NetworkService.toggleWifi()
         }
-      }
+    }
 
-      Rectangle {
-        Layout.fillWidth: true
-        Layout.preferredHeight: 1
-        color: "white"
-      }
+    Separator {}
 
-
-      //---------- Known Networks ----------
-      Text {
+    // -------------------- Known Networks ------------------------------
+    Text {
         text: "Known Networks"
         font.pixelSize: 16
         color: "white"
-      }
+    }
 
-      ListView {
+    ListView {
         id: knownWifiList
         model: NetworkService.wifiEnabled ? NetworkService.knownFilteredWifiModel : []
 
@@ -88,28 +65,24 @@ PopupWindow {
         implicitHeight: contentHeight
         
         delegate: Delegate {
-          name: model.ssid
-          WifiIcon {
-            size: 30
-            signalStrength: model.strength
-          }
+          	name: model.ssid
+          	WifiIcon {
+            	size: 30
+            	signalStrength: model.strength
+          	}
         }
-      }
+    }
 
-      Rectangle {
-        Layout.fillWidth: true
-        Layout.preferredHeight: 1
-        color: "white"
-      }
+    Separator {}
 
-      //---------- Available Networks ----------
-      Text {
+    // -------------------- Available Networks ------------------------------
+    Text {
         text: "Available Networks"
         font.pixelSize: 16
         color: "white"
-      }
+    }
 
-      ListView {
+    ListView {
         id: availableWifiList
         model: NetworkService.wifiEnabled ? NetworkService.availableFilteredWifiModel : []
 
@@ -117,24 +90,11 @@ PopupWindow {
         implicitHeight: contentHeight
 
         delegate: Delegate {
-          name: model.ssid
-          WifiIcon {
-            size: 30
-            signalStrength: model.strength
-          }
+          	name: model.ssid
+          	WifiIcon {
+            	size: 30
+            	signalStrength: model.strength
+          	}
         }
-      }
-
-      Rectangle {
-        Layout.fillWidth: true
-        Layout.preferredHeight: 1
-        color: "white"
-      }
-
-      Item {
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-      }
     }
-  }
 }

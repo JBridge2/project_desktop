@@ -3,20 +3,26 @@ import Quickshell
 import Quickshell.Hyprland
 import "./UI/Bar/"
 import "./UI/Launcher/"
+import "./UI/Notifications/"
 import "./UI/Popups/"
 import Core
 
 ShellRoot {
   	id: root
 
+	Bar {}
+
   	Launcher {
 		visible: PopupState.isOpen("launcher")
   	}
 
-  	Bar {}
+  	Toast {}
 
   	// -------------------- Popup's ------------------------------
-  	NetworkPopup {
+  	NotificationCenter {
+		visible: PopupState.isOpen("notification")
+	}
+	NetworkPopup {
 		visible: PopupState.isOpen("network")
   	}
   	BatteryPopup {

@@ -4,6 +4,7 @@ Delegate 1.0 Base/Delegate.qml
 IconBox 1.0 Base/IconBox.qml
 PopupWindow 1.0 Base/PopupWindow.qml
 PopupWindow2 1.0 Base/PopupWindow2.qml
+Separator 1.0 Base/Separator.qml
 
 PowerButton 1.0 Controls/PowerButton.qml
 Slider 1.0 Controls/Slider.qml
