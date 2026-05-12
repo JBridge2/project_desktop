@@ -70,10 +70,10 @@ PopupWindow {
             height: 80
             
             ToastContent {
-                notifImage: modelData?.image
-                notifAppName: modelData?.appName
-                notifSummary: modelData?.summary
-                notifBody: modelData?.body
+                notifImage: modelData?.image ?? ""
+                notifAppName: modelData?.appName ?? ""
+                notifSummary: modelData?.summary ?? ""
+                notifBody: modelData?.body ?? ""
             }
 
             Rectangle {

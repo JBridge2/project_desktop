@@ -24,11 +24,11 @@ Singleton {
 
     // ---------- Set Default Nodes ----------
     function setDefaultSink(sink) {
-        if (sink) Pipewire.prefferedDefaultAudioSink = sink;
+        if (sink) Pipewire.preferredDefaultAudioSink = sink;
     }
 
     function setDefaultSource(source) {
-        if (source) Pipewire.prefferedDefaultAudioSource = source;
+        if (source) Pipewire.preferredDefaultAudioSource = source;
     }
 
 

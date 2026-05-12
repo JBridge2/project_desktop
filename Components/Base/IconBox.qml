@@ -4,15 +4,17 @@ import Quickshell
 
 Rectangle {
     property int size: 40
+    property int rectRadius: size / 2
+    property var rectColor: connected ? "#0080ff" : "#6d6d6d"
     property int imageSize: size * 0.6
     property bool connected: false
     property url imageUrl: ""
 
     width: size
     height: size
-    radius: size / 2
+    radius: rectRadius
     
-    color: connected ? "#0080ff" : "#6d6d6d"
+    color: rectColor
 
     Image {
         anchors.centerIn: parent

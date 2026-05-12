@@ -16,10 +16,10 @@ PanelWindow {
     visible: NotificationService.currentToast !== null
 
     ToastContent {
-        notifImage: NotificationService.currentToast?.image
-        notifAppName: NotificationService.currentToast?.appName
-        notifSummary: NotificationService.currentToast?.summary
-        notifBody: NotificationService.currentToast?.body
+        notifImage: NotificationService.currentToast?.image ?? ""
+        notifAppName: NotificationService.currentToast?.appName ?? ""
+        notifSummary: NotificationService.currentToast?.summary ?? ""
+        notifBody: NotificationService.currentToast?.body ?? ""
 
         // -------------------- Slide in animation ------------------------------
         transform: Translate {

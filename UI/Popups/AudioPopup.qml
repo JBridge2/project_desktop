@@ -47,6 +47,9 @@ PopupWindow {
 
         delegate: Delegate {
             name: modelData.description
+            image: "bluetooth.svg"
+            connected: AudioService.defaultSink === modelData
+            onClicked: AudioService.setDefaultSink(modelData)
         }
     }
 }

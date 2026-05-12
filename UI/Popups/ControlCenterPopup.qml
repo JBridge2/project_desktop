@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts 1.15
 import Quickshell
+import Quickshell.Widgets
 import Components
 import Core
 import Services
@@ -29,16 +30,18 @@ PopupWindow2 {
 
             ImageBox {
                 Layout.columnSpan: 2
+                popup: "notification"
+                image: "notification-bell.svg"
                 line1: "Notifications"
                 line2: NotificationService.notificationsModel.values.length + " New notifications"
-                popup: "notification"
+                
             }
 
             ImageBox {
                 Layout.columnSpan: 1
+                popup: "network"
                 line1: "Wi-Fi"
                 line2: NetworkService.wifiConnected ? NetworkService.ssid : "Disconnected"
-                popup: "network"
                 WifiIcon {}
             }
 
@@ -110,10 +113,88 @@ PopupWindow2 {
                 
             }
 
-            ImageBox {
+            WidgetBox {
+                id: mediaBox
                 Layout.columnSpan: 2
-                line1: "Music"
-                line2: "Artist"
+                popup: "media"
+
+                RowLayout {
+                    anchors.fill: parent
+                    anchors.margins: 10
+                    spacing: 5
+
+                    ClippingRectangle {
+                        width: 50
+                        height: 50
+                        radius: 5
+                        Layout.rightMargin: 5
+                        color: "#6d6d6d"
+                        
+                        Image {
+                            anchors.fill: parent
+                            source: MediaService?.artUrl
+                            fillMode: Image.PreserveAspectCrop
+                        }
+                    }
+
+                    ColumnLayout {
+                        Layout.fillWidth: true
+                        spacing: 0
+
+                        Text {
+                            text: MediaService.title
+                            color: "white"
+                            font.pixelSize: 14
+                            elide: Text.ElideRight
+                            Layout.fillWidth: true
+                        }
+                        Text {
+                            text: MediaService.artist
+                            color: "#a0a0a0"
+                            font.pixelSize: 12
+                        }
+                    }
+
+                    IconBox {
+                        size: 26
+                        rectRadius: 0
+                        rectColor: "Transparent"
+                        imageSize: 24
+                        imageUrl: Qt.resolvedUrl("../../Assets/Icons/mediaBack")
+                        visible: MediaService.player
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: MediaService.player.previous()
+                        }
+                    }
+                    IconBox {
+                        size: 26
+                        rectRadius: 0
+                        rectColor: "Transparent"
+                        imageSize: 24
+                        imageUrl: Qt.resolvedUrl("../../Assets/Icons/" + (MediaService?.player?.isPlaying ? "mediaPause.svg" : "mediaPlay.svg") )
+                        visible: MediaService.player
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: MediaService.player.togglePlaying()
+                        }
+                    }
+                    IconBox {
+                        size: 26
+                        rectRadius: 0
+                        rectColor: "Transparent"
+                        imageSize: 24
+                        imageUrl: Qt.resolvedUrl("../../Assets/Icons/mediaForward")
+                        visible: MediaService.player
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: MediaService.player.next()
+                        }
+                    }
+                }
             }
         }
     }

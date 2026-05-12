@@ -40,6 +40,9 @@ ShellRoot {
   	AudioPopup {
     	visible: PopupState.isOpen("audio")
   	}
+	MediaPopup {
+		visible: PopupState.isOpen("media")
+	}
 
 	// -------------------- Keybinds ------------------------------
 	GlobalShortcut {
