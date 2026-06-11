@@ -19,9 +19,6 @@ ShellRoot {
   	Toast {}
 
   	// -------------------- Popup's ------------------------------
-  	NotificationCenter {
-		visible: PopupState.isOpen("notification")
-	}
 	NetworkPopup {
 		visible: PopupState.isOpen("network")
   	}
@@ -34,6 +31,9 @@ ShellRoot {
   	ControlCenterPopup {
     	visible: PopupState.isOpen("controlCenter")
   	}
+	NotificationCenter {
+		visible: PopupState.isOpen("notification")
+	}
   	BluetoothPopup {
     	visible: PopupState.isOpen("bluetooth")
   	}

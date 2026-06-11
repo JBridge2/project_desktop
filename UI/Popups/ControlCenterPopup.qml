@@ -5,6 +5,7 @@ import Quickshell.Widgets
 import Components
 import Core
 import Services
+import Config
 
 PopupWindow2 {
     id: root
@@ -16,9 +17,9 @@ PopupWindow2 {
     Rectangle {
         anchors.fill: parent
         radius: 10
-        color: "#2c2c2c"
+        color: Colors.base
         border.width: 1
-        border.color: "#4d4d4d"
+        border.color: Colors.border
 
         GridLayout {
             id: main
@@ -31,7 +32,7 @@ PopupWindow2 {
             ImageBox {
                 Layout.columnSpan: 2
                 popup: "notification"
-                image: "notification-bell.svg"
+                image: "notification_bell.svg"
                 line1: "Notifications"
                 line2: NotificationService.notificationsModel.values.length + " New notifications"
                 
@@ -63,6 +64,7 @@ PopupWindow2 {
             
             ImageBox {
                 Layout.columnSpan: 1
+                image: "focus.svg"
                 line1: "Focus"
                 line2: "Focus Mode"
             }
@@ -77,7 +79,7 @@ PopupWindow2 {
 
                     Text {
                         text: "Brightness"
-                        color: "white"
+                        color: Colors.text
                         font.pixelSize: 14
                         font.bold: true
                     }
@@ -99,7 +101,7 @@ PopupWindow2 {
 
                     Text {
                         text: "Volume"
-                        color: "white"
+                        color: Colors.text
                         font.pixelSize: 14
                         font.bold: true
                     }
@@ -143,7 +145,7 @@ PopupWindow2 {
 
                         Text {
                             text: MediaService.title
-                            color: "white"
+                            color: Colors.text
                             font.pixelSize: 14
                             elide: Text.ElideRight
                             Layout.fillWidth: true
@@ -207,9 +209,9 @@ PopupWindow2 {
         Layout.fillWidth: true
         height: 70
         radius: 10
-        color: "#3c3c3c"
+        color: Colors.surface
         border.width: 1
-        border.color: "#4d4d4d"
+        border.color: Colors.border
 
         MouseArea {
             id: mouseArea
@@ -254,14 +256,14 @@ PopupWindow2 {
 
                 Text {
                     text: line1
-                    color: "white"
+                    color: Colors.text
                     font.pixelSize: 14
                     font.bold: true
                     
                 }
                 Text {
                     text: line2
-                    color: "white"
+                    color: Colors.textMuted
                     font.pixelSize: 12
                 }
             }

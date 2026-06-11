@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Services.UPower
 import Components
 import Core
+import Config
 
 PopupWindow {
     id: root
@@ -20,7 +21,7 @@ PopupWindow {
 
         Text {
             text: "Battery"
-            color: "white"
+            color: Colors.text
             font.pixelSize: 16
             font.bold: true
         }
@@ -29,13 +30,13 @@ PopupWindow {
         }
         Text {
             text: Math.round(batPercentage * 100) + "%"
-            color: "white"
+            color: Colors.text
             font.pixelSize: 16
         }
     }
     Text {
         text: batTimeHours + "h " + batTimeMinuts + "m until battery empty"
-        color: "#d2d2d2"
-        font.pixelSize: 14
+        color: Colors.textMuted
+        font.pixelSize: 12
     }
 }

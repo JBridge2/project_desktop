@@ -5,6 +5,7 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
 import "../../Core/"
+import Config
 
 PanelWindow {
     id: root
@@ -21,12 +22,10 @@ PanelWindow {
         left: anchorSide === "left"
         right: anchorSide === "right"
     }
-
     margins {top: 10; left: 10; right: 10;}
 
     implicitWidth: width
     implicitHeight: contentPlaceholder.implicitHeight + (innerMargins * 2)
-
     color: "transparent"
 
     HyprlandFocusGrab {
@@ -38,9 +37,9 @@ PanelWindow {
     Rectangle {
         anchors.fill: parent
         radius: 10
-        color: "#2c2c2c"
+        color: Colors.surface
         border.width: 1
-        border.color: "#4d4d4d"
+        border.color: Colors.border
 
         ColumnLayout {
             id: contentPlaceholder

@@ -1,5 +1,6 @@
 module Components
 
+BarModule 1.0 Base/BarModule.qml
 Delegate 1.0 Base/Delegate.qml
 IconBox 1.0 Base/IconBox.qml
 PopupWindow 1.0 Base/PopupWindow.qml

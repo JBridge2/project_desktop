@@ -2,43 +2,41 @@ import QtQuick
 import QtQuick.Layouts 1.15
 import Quickshell
 import "./Widgets"
-
+import Config
 import Core
 
 PanelWindow {
-  id: root
+  	id: root
 
-  anchors {
-    top: true
-    left: true
-    right: true
-  }
+  	anchors {
+    	top: true
+    	left: true
+    	right: true
+  	}
   
-  implicitHeight: 40
-  color: "#333333"
+  	implicitHeight: 40
+  	color: Colors.base
 
-  RowLayout {
-    anchors {
-      fill: parent
-      leftMargin: 10
-      rightMargin: 10
-    }
-    spacing: 0
+  	RowLayout {
+    	anchors.fill: parent
+    	spacing: 0
 
-    Workspaces {}
+		Arch {}
 
-    Item {
-      Layout.fillWidth: true
-    }
+    	Workspaces {}
 
-    ControlCenterButton {}
+    	Item {
+      		Layout.fillWidth: true
+    	}
 
-    Network {} 
+    	ControlCenterButton {}
 
-    Battery {}
+    	Network {} 
 
-    Power {}
-  }
+    	Battery {}
 
-  Clock {}
+    	Power {}
+  	}
+
+  	Clock {}
 }

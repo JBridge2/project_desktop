@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts 1.15
 import Quickshell
 import Quickshell.Hyprland
+import Config
 
 Rectangle {
 	id: workspaceRoot
@@ -11,16 +12,19 @@ Rectangle {
 	readonly property int activeItemWidth: itemWidth*2
 	readonly property int rowSpacing: 5
 	readonly property int visibleCount: workspaceRepeater.count
-	readonly property int workspaceWidth: (itemWidth * visibleCount) + (activeItemWidth - itemWidth) + (rowSpacing * (visibleCount - 1))
+	readonly property int workspaceWidth: (itemWidth * visibleCount) + (activeItemWidth - itemWidth) + (rowSpacing * (visibleCount - 1)) + workspaceMargins * 2
+	readonly property int workspaceMargins: 10
 
 	color: "transparent"
-	width: workspaceWidth
+	width: workspaceRepeater.count > 0 ? workspaceWidth : 155
 	height: itemHeight
   
 	RowLayout {
     	id: workspaceRow
 
-    	anchors.centerIn: parent
+    	anchors.fill: parent
+		anchors.leftMargin: workspaceMargins
+		anchors.rightMargin: workspaceMargins
 	    spacing: rowSpacing
 
     	Repeater {
@@ -34,7 +38,7 @@ Rectangle {
     	    	implicitHeight: itemHeight
         		radius: itemHeight/2
 
-        		color: modelData.active ? "red" : "#4c566a"
+        		color: modelData.active ? Colors.accent : Colors.surface
 
 	        	Text {
     	      		anchors.centerIn: parent

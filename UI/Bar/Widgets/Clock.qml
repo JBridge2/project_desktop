@@ -1,29 +1,33 @@
 import QtQuick
+import QtQuick.Layouts
+import Quickshell
 
 Rectangle {
-  id: clockRoot
-  anchors.centerIn: parent
-  height: 28
-  width: clockText.implicitWidth + 20
-  radius: height/2
-  color: "#222222"
+  	id: clockRoot
+  	anchors.centerIn: parent
+  	height: 40
+  	width: clockText.implicitWidth + 20
+  	radius: 10
+  	color: "Transparent"
 
-  Text {
-    id: clockText
+  	ColumnLayout {
+		id: clockText
+		anchors.fill: parent
+		anchors.leftMargin: 10
+		spacing: -4
 
-    anchors.centerIn: parent
-    text: currentTime
-    color: "white"
-    font.pixelSize: 16
-  }
+		SystemClock {
+			id: clock
+			precision: SystemClock.Minutes
+		}
 
-  property string currentTime: Qt.formatDateTime(new Date(), "HH:mm")
+    	Text {
+      		id: timeText
 
-  Timer {
-    interval:1000
-    running: true
-    repeat: true
-    onTriggered: currentTime = Qt.formatDateTime(new Date(), "HH:mm")
-  }
-
+      		text: Qt.formatDateTime(clock.date, "hh:mm - dddd, d MMM" )
+      		color: "white"
+      		font.pixelSize: 16
+			font.bold: true
+    	}
+	}
 }

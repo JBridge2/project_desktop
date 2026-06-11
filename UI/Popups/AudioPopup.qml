@@ -24,12 +24,7 @@ PopupWindow {
         }
     }
 
-    Rectangle {
-        Layout.fillWidth: true
-        Layout.preferredHeight: 1
-        Layout.topMargin: 5
-        color: "#7d7d7d"
-    }
+    Separator { Layout.topMargin: 5 }
 
     Text {
         text: "Output"

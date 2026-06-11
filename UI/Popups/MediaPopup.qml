@@ -81,10 +81,7 @@ PopupWindow {
                         height: parent.height
                         radius: height / 2
                         color: "white"
-                        width: {
-                            modelData.position; 
-                            return MediaService.getProgress(modelData) * track.width
-                        }
+                        width: MediaService.getProgress(modelData) * track.width
 
                         Behavior on width {
                             NumberAnimation {
@@ -92,6 +89,12 @@ PopupWindow {
                                 easing.type: Easing.OutQuint
                             }
                         }
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onPressed: modelData.position = (mouse.x / parent.width) * modelData.length
                     }
                 }
                 
